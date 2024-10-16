@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        background-color: rgb(177, 202, 248);
+    }
+    #div1{
+        border-radius: 10px;
+        background-color: rgb(157, 250, 219);
+        height: 300px;
+        width: 350px;
+        border: 1px solid  blueviolet;
+        position: relative;
+        left:700px;
+        top:200px;
+
+    }
+    #div1 h1{
+        margin-left: 70px;
+        color:blueviolet;
+    }
+    #p1,#p2,#p3{
+        margin-left: 80px;
+        font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+    .pic{
+        border-radius: 50%;
+        position: relative;
+        left:130px;
+    }
+</style>
+<body>
+    <div id="div1"><h1>Random User</h1><div id="image"></div></div> 
+
+
+    <script>
+
+let div1=document.getElementById("div1");
+let img=document.getElementById("image");
+const URL="https://randomuser.me/api/"
+fetch(URL).then(Response=>Response.json())
+.then(data=>{
+    let obj=data;
+     for(let nordata in obj){
+        let innerdata=obj[nordata];
+        
+        if(nordata=="results"){
+            for(let objs in innerdata){
+            let innerobjs=innerdata[objs]
+           
+                //console.log(innerobjs)
+                for(let innerdata in innerobjs){
+                let maindata=innerobjs[innerdata]
+
+                if(innerdata=="name") {
+                    for(let res in  maindata){
+                    if(res=="first"){n1=maindata[res]          
+                 let p1=document.createElement("p")
+                 p1.id="p1"
+                p1.innerHTML=(`${innerdata}:${n1} `)
+                div1.appendChild(p1)
+                document.body.appendChild(div1)
+                    }
+                   /* if(res=="first"){n2=maindata[res]}
+                    let final=maindata[res]*/
+            
+                   // console.log(res)
+               // let p1=document.createElement("p")
+               // p1.innerHTML=(`${final}`)
+               // div1.appendChild(p1)
+              //  document.body.appendChild(div1)
+                //console.log(maindata[res])
+                }
+                }
+
+                if(innerdata=="dob") {
+                    for(let res in  maindata){
+                    if(res=="date"){ (n1=maindata[res])      
+                 let p2=document.createElement("p")
+                p2.id="p2"
+                p2.innerHTML=(`${innerdata}:${n1} `)
+                div1.appendChild(p2)
+                document.body.appendChild(div1)
+                    }
+                   
+                }
+                }
+
+                if(innerdata=="id") {
+                    for(let res in  maindata){
+                    if(res=="value"){ (n1=maindata[res])      
+                 let p3=document.createElement("p")
+                p3.id="p3"
+                p3.innerHTML=(`${innerdata}:${n1} `)
+                div1.appendChild(p3)
+                document.body.appendChild(div1)
+                    }
+                   
+                }
+                }
+
+                   
+                
+
+                if(innerdata=="picture") {
+                    for(let res in  maindata){
+                    if(res=="medium"){ (n1=maindata[res])      
+                 let p4=document.createElement("img")
+                 p4.setAttribute("src",`${n1}`)
+                 p4.className="pic"
+                img.appendChild(p4)
+                document.body.appendChild(div1)
+                    }
+                   
+                }
+                }
+
+                  
+                }
+            }
+        }
+     }
+    
+})
+
+
+
+    </script>
+    
+</body>
+</html>
